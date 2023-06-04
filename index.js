@@ -1,4 +1,5 @@
 
+/* 
 const express = require('express');
 const { Pool } = require('pg');
 
@@ -17,13 +18,20 @@ const pool = new Pool({
   const router = express.Router();
 
 // ruta
+*/
 
+
+
+/*
 router.get('/joyas', async (req, res) => {
   try {
+    
     const cliente = await pool.connect();
     const result = await cliente.query('SELECT * FROM joyas');
     res.json(result.rows);
-    cliente.release();
+    cliente.release(); 
+    
+   res.json({ok:true})
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Error de server interno' });
@@ -31,16 +39,29 @@ router.get('/joyas', async (req, res) => {
 });
 
 app.use('/api', router);
-
-/* const puerta = 3000;
-
-app.listen(puerta, () => {
-  console.log(`Server corriendo en puerto ${puerta}`);
+*/
+/*
+app.get("/joyas", (req, res) => {
+    res.json({ ok: true });
 });
- */
 
-app.listen(3000, console.log("Servidor corriendo en puerto 3000"));
+import * as dotenv from "dotenv";
+dotenv.config();
+*/
+require('dotenv').config();
+
+const express = require("express");
+
+/*
+import express from "express";
+*/
+const app = express()
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log("Servidor corriendo en puerto 3000"));
+
 
 app.get("/joyas", (req, res) => {
-    res.send("Hola mundo joyas")
+    //res.send("Hola mundo joyas");
+    res.json({ ok: true });
 })
