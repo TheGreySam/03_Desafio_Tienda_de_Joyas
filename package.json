@@ -1,0 +1,19 @@
+{
+  "name": "03_desafio_tienda_de_joyas",
+  "version": "1.0.0",
+  "description": "API REST tienda My Precious Spa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheGreySam/03_Desafio_Tienda_de_Joyas.git"
+  },
+  "author": "\"Sebastian Gomez Letelier\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheGreySam/03_Desafio_Tienda_de_Joyas/issues"
+  },
+  "homepage": "https://github.com/TheGreySam/03_Desafio_Tienda_de_Joyas#readme"
+}
