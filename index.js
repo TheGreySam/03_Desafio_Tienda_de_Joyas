@@ -40,21 +40,11 @@ router.get('/joyas', async (req, res) => {
 
 app.use('/api', router);
 */
-/*
-app.get("/joyas", (req, res) => {
-    res.json({ ok: true });
-});
 
-import * as dotenv from "dotenv";
-dotenv.config();
-*/
 require('dotenv').config();
 
 const express = require("express");
 
-/*
-import express from "express";
-*/
 const app = express()
 
 const PORT = process.env.PORT || 3000;
