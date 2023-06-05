@@ -40,18 +40,24 @@ app.get("/joyas/filtros", async (req, res) => {
     try {
         const { precio_max, precio_min, categoria, metal } = req.query;
 
-        let query = 'SELECT * FROM inventario';
+        let query = 'SELECT * FROM inventario WHERE 1 = 1';
+        const param = [];
+
         if (precio_max) {
-        query += `AND precio <= ${precio_max}`;
+        query += `AND precio <= $1`;
+        param.push(parseFloat(precio_max));
         }
         if (precio_min) {
-            query += `AND precio >= ${precio_min}`;
+            query += `AND precio >= $2`;
+            param.push(parseFloat(precio_min));
         }
         if (categoria) {
-            query += `AND categoria = '%${categoria}%'`;
+            query += `AND categoria = $3`;
+            param.push('%${categoria}%')
         }
         if (metal) {
-            query += `AND metal = '%${metal}%'`;
+            query += `AND metal = $4`;
+            param.push('%${metal}%')
         }
         const response = await pool.query(query);
         res.json(response.rows);
