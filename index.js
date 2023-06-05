@@ -7,7 +7,8 @@ const { Pool } = require('pg');
 const app = express()
 
 const pool = new Pool({
-    connectionString: process.env.PGDATABASE,
+    //connectionString: process.env.PGDATABASE_URL,
+    allowExitOnIdle: true
 });
 console.log(pool)
 
