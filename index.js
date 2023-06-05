@@ -35,3 +35,29 @@ app.get("/joyas", async (req, res) => {
         res.status(500).json({ error: 'Error de server interno' });
     }
 });
+
+app.get("/joyas/filtros", async (req, res) => {
+    try {
+        const { precio_max, precio_min, categoria, metal } = req.query;
+
+        let query = 'SELECT * FROM inventario';
+        if (precio_max) {
+        query += `AND precio <= ${precio_max}`;
+        }
+        if (precio_min) {
+            query += `AND precio >= ${precio_min}`;
+        }
+        if (categoria) {
+            query += `AND categoria = '%${categoria}%'`;
+        }
+        if (metal) {
+            query += `AND metal = '%${metal}%'`;
+        }
+        const response = await pool.query(query);
+        res.json(response.rows);
+        //res.json({ ok: true });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Error de server interno' });
+    }
+});
