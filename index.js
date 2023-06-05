@@ -10,7 +10,7 @@ const pool = new Pool({
     //connectionString: process.env.PGDATABASE_URL,
     allowExitOnIdle: true
 });
-console.log(pool)
+//console.log(pool)
 
 
 const PORT = process.env.PORT || 3000;
