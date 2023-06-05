@@ -10,8 +10,6 @@ const pool = new Pool({
     //connectionString: process.env.PGDATABASE_URL,
     allowExitOnIdle: true
 });
-//console.log(pool)
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Servidor corriendo en puerto 3000"));
@@ -19,13 +17,21 @@ app.listen(PORT, () => console.log("Servidor corriendo en puerto 3000"));
 
 app.get("/joyas", async (req, res) => {
     try {
-        const query = 'SELECT * FROM inventario';
+        const { limit, page, order_by } = req.query;
+
+        let query = 'SELECT * FROM inventario';
+        if (limit) {
+        const offset = (page - 1) * limit;
+        query += ` LIMIT ${limit} OFFSET ${offset}`;
+        }
+        if (order_by) {
+        query += ` ORDER BY ${order_by}`;
+        }
         const response = await pool.query(query);
-        res.json(response.rows)
+        res.json(response.rows);
         //res.json({ ok: true });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Error de server interno' });
     }
-    
 });
